@@ -4,23 +4,27 @@ import java.util.HashMap;
 
 public class Problem1 {
     public static void main(String[] args) {
-        int[] givenArray = {};
+        int[] givenArray = {1, 2, 3, 2, 1, 3, 10};
+        System.out.print(sumOfUniques(givenArray));
     }
 
     public static int sumOfUniques(int[] nums){
-        HashMap<Integer, Integer> map = new HashMap<>();
+        int sum = 0;
+        HashMap<Integer, Integer> mapOfValues = new HashMap<>();
 
-        int counter = 0;
-
-        for(int val : nums){
-            map.put(nums[val], val);
-        }
-
-        for(int val : nums){
-            if(map.get(val) == 1){
-                counter += nums[val];
+        for(int val = 0; val < nums.length; val++){
+            if (mapOfValues.containsKey(nums[val])) {
+                mapOfValues.put(nums[val], mapOfValues.get(nums[val]) + 1);
+            } else {
+                mapOfValues.put(nums[val], 1);
             }
         }
-        return counter;
+
+        for(int val = 0; val < nums.length; val++){
+            if(mapOfValues.get(nums[val]) == 1){
+                sum = sum + nums[val];
+            }
+        }
+        return sum;
     }
 }
