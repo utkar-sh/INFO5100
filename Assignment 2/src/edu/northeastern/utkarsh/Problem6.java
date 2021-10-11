@@ -1,10 +1,11 @@
 package edu.northeastern.utkarsh;
 
-//Time Complexity: O(n)
-//Space Complexity: O(n)
+
 import java.util.HashMap;
 import java.util.HashSet;
 
+//Time Complexity: O(n)
+//Space Complexity: O(n)
 public class Problem6 {
     public static void main(String args[]){
 
