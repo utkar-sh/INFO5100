@@ -2,7 +2,7 @@ package edu.northeastern.utkarsh;
 
 //Tested on Leetcode
 //Time Complexity: O(m*n)
-//Space Complexity: O(m*n)
+//Space Complexity: O(1)
 public class Problem1 {
     public static void main(String[] args) {
 
