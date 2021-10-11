@@ -34,7 +34,6 @@ public class Problem6 {
         if (set.size() == map.values().size()) {
             return true;
         }
-
         return false;
     }
 }

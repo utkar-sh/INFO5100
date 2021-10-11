@@ -14,20 +14,20 @@ public class Problem1 {
 
         if(rows != cols){
             int[][] transposedMatrix = new int[cols][rows];
-            int i = 0;
+            int val1 = 0;
             for(int[] row : matrix){
-                for(int j=0;j<cols;j++){
-                    transposedMatrix[j][i] = row[j];
+                for(int val2 = 0; val2 <cols; val2++){
+                    transposedMatrix[val2][val1] = row[val2];
                 }
-                i++;
+                val1++;
             }
             return transposedMatrix;
         } else {
-            for(int i=0;i<rows;i++){
-                for(int j=1+i;j<cols;j++){
-                    int temp = matrix[i][j];
-                    matrix[i][j] = matrix[j][i];
-                    matrix[j][i] = temp;
+            for(int val1 = 0; val1 <rows; val1++){
+                for(int val2=1+val1 ; val2 < cols; val2++){
+                    int temp = matrix[val1][val2];
+                    matrix[val1][val2] = matrix[val2][val1];
+                    matrix[val2][val1] = temp;
                 }
             }
             return matrix;
