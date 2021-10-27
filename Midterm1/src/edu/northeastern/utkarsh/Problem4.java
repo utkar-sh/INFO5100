@@ -1,35 +1,44 @@
 package edu.northeastern.utkarsh;
 
+import java.util.HashMap;
+
 public class Problem4 {
     public static void main(String args[]){
         String str = "abcabcbb";
-        printOutput(str);
+        System.out.println(longestSubsttr(str));
     }
 
-    public static int lengthOfLongestSubstring(String s) {
-        int[] chars = new int[128];
+    public static String longestSubsttr(String str) {
+        int val = 0;
+        int st = 0;
+        int currentLength = 0;
 
-        int left = 0;
-        int right = 0;
+        int maxLength = 0;
+        int start = 0;
 
-        int res = 0;
-        while (right < s.length()) {
-            char r = s.charAt(right);
-            chars[r]++;
+        HashMap<Character, Integer> mapOfValues = new HashMap<>();
+        mapOfValues.put(str.charAt(0), 0);
 
-            while (chars[r] > 1) {
-                char l = s.charAt(left);
-                chars[l]--;
-                left++;
+        for (val = 1; val < str.length(); val++) {
+            if (!mapOfValues.containsKey(str.charAt(val))) {
+                mapOfValues.put(str.charAt(val), val);
+            } else {
+                if (mapOfValues.get(str.charAt(val)) >= st) {
+                    currentLength = val - st;
+                    if (maxLength < currentLength) {
+                        maxLength = currentLength;
+                        start = st;
+                    }
+                    st = mapOfValues.get(str.charAt(val)) + 1;
+                }
+                mapOfValues.replace(str.charAt(val), val);
             }
-            res = Math.max(res, right - left + 1);
-
-            right++;
         }
-        return res;
-    }
 
-    public static void printOutput(String s){
-        System.out.println("Output: " + lengthOfLongestSubstring(s));
+        if (maxLength < val - st){
+            maxLength = val - st;
+            start = st;
+        }
+        return str.substring(start, start + maxLength);
     }
 }
