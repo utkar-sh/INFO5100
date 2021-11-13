@@ -6,53 +6,68 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+//The code snippet which is commented out is coarse concurrency which can be substituted by using the keyword "synchronized"
+
 public class ThreadSafeLinkedList {
 
     private LinkedList<Integer> list = new LinkedList<>();
 
-    ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+//    ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
-    public void add(int element) {
-        lock.writeLock().lock();
+    public synchronized void add(int element) {
         list.add(element);
-        lock.writeLock().unlock();
+//        lock.writeLock().lock();
+//        list.add(element);
+//        lock.writeLock().unlock();
     }
 
-    public void addAtPosition(int index, Integer element) {
-        lock.writeLock().lock();
+    public synchronized void addAtPosition(int index, Integer element) {
         list.add(index, element);
-        lock.writeLock().unlock();
+//        lock.writeLock().lock();
+//        list.add(index, element);
+//        lock.writeLock().unlock();
     }
 
-    public void removeAtPosition(Integer index){
-        lock.writeLock().lock();
-        list.remove(index);
-        lock.writeLock().unlock();
+    public synchronized void removeAtPosition(Integer index){
+        if (index >= 0 && list.size() >= index) {
+            list.remove(index);
+        }
+//        lock.writeLock().lock();
+//        list.remove(index);
+//        lock.writeLock().unlock();
     }
 
-    public Integer getFirst() {
-        Integer e;
-        lock.readLock().lock();
-        e = list.getFirst();
-        lock.readLock().unlock();
-        return e;
+    public synchronized Integer getFirst() {
+        if (!list.isEmpty()) {
+            return list.getFirst();
+        }
+        return null;
+//        Integer e;
+//        lock.readLock().lock();
+//        e = list.getFirst();
+//        lock.readLock().unlock();
+//        return e;
     }
 
-    public Integer getLast() {
-        Integer e;
-        lock.readLock().lock();
-        e = list.getLast();
-        lock.readLock().unlock();
-        return e;
+    public synchronized Integer getLast() {
+        if (!list.isEmpty()) {
+            return list.getLast();
+        }
+        return null;
+//        Integer e;
+//        lock.readLock().lock();
+//        e = list.getLast();
+//        lock.readLock().unlock();
+//        return e;
     }
 
-    public int size() {
-        int size;
-        lock.readLock().lock();
-        size = list.size();
-        lock.readLock().unlock();
-        return size;
-
+    public synchronized int size() {
+        return list.size();
+//        int size;
+//        lock.readLock().lock();
+//        size = list.size();
+//        lock.readLock().unlock();
+//        return size;
     }
 
     public static void main(String[] args) {
