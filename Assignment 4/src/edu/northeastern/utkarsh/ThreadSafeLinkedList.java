@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-//The code snippet which is commented out is coarse concurrency which can be substituted by using the keyword "synchronized"
+//The code snippet which is commented out is coarse grained locking which can be substituted by using the keyword "synchronized"
 
 public class ThreadSafeLinkedList {
 
