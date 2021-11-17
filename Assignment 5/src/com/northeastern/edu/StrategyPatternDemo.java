@@ -9,5 +9,5 @@ public class StrategyPatternDemo {
         cart.addItem(item1);
         cart.addItem(item2);
 
-        cart.pay(new PaypalStrategy("myemail@example.com"));
-        cart.pay(new CreditCardStrategy( "1234567890123456")); } }
+        cart.pay(new PayPal("myemail@example.com"));
+        cart.pay(new CreditCard( "1234567890123456")); } }
