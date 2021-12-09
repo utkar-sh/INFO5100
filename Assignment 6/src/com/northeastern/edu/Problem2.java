@@ -22,14 +22,14 @@ public class Problem2 {
             LocalDate date = dateOfBirth.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             Period period = Period.between(date, today);
 
-            if(period.getYears() < 18){
+            if(period.getYears() < 16){
                 String age = String.valueOf(period.getYears());
                 throw new Exception(age);
             } else {
                 System.out.println("You can apply for a driving license.");
             }
         } catch(Exception e){
-            System.out.println("The age of the applicant is "+e.getMessage() +" which is too early to apply for a driving license.");
+            System.out.println("The age of the applicant is " +e.getMessage() + " which is too early to apply for a driving license.");
         }
     }
 }
